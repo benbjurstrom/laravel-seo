@@ -231,6 +231,15 @@ class SEOManager
         return $this;
     }
 
+    /** Append canonical URL tags to the document head using App URL as the root */
+    public function withAppUrl(): static
+    {
+        $appUrl = trim(config('app.url'), '/');
+        $this->url(trim($appUrl . '/' . request()->path(), '/'));
+
+        return $this;
+    }
+
     /** Get all extra head tags. */
     public function tags(): array
     {
